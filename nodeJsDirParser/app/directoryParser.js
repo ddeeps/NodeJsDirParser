@@ -4,12 +4,12 @@ class DirectoryParser{
             this.directoryNames=[];
     }
 
-    parseDirectory(){
+    parseDirectory(callback){
         this.result={
                     'fileNames':this.fileNames,
                     'directoryNames':this.directoryNames
                 };
-        return (this.result);     
+        callback(null,this.result);     
     }
 }
 

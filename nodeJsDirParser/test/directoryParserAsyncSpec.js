@@ -9,7 +9,6 @@ var DIR3 = 'BAT'+sep+'CAT';
 var DIR4 = 'SKYPE'+sep+'CHAT'+sep+'TEXT';
 var DIR5 = 'SKYPE'+sep+'VEDIO';
 var DIR6 = 'SKYPE'+sep+'CHAT'+sep+'EMOJIES'; 
-//global.sinon = require('sinon');
 
 describe('constructor()',function(){
     it('should call "super"',function(){
@@ -35,11 +34,9 @@ describe('parseDirectoryAsync()', function(){
      //Failing test case
      it('should return error when input directory is incorrect',function(){
         var directoryParserAsync = new DirectoryParserAsync(DIR);  
-        //let errStr = 'ENOENT, no such file or directory \'BAT/SAT1\'';
 
         directoryParserAsync.parseDirectoryAsync(function(error,result){
             expect(error).to.be.instanceof(Error);     
-            //expect(error.message).to.equals(errStr);      
         });
      });
 
@@ -155,14 +152,4 @@ describe('parseDirectoryAsync()', function(){
             expect((result.directoryNames[0].indexOf(res7))>-1).to.be.true;
         });
     }); 
-});
-
-describe('getResult()',function(){
-    it('it should return result in json format',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR3);
-        var spyCallback = sinon.spy();
-        directoryParserAsync.getResult(spyCallback);
-        expect(spyCallback).to.have.been.called;
-        spyCallback.restore;
-    });
 });

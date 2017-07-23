@@ -7,56 +7,51 @@ class DirectoryParserAsync extends DirectoryParser{
         super();
         this.inputDir = inputDir;
     }
-
+   
     parseDirectoryAsync(callback){ 
         var _this = this;
        
         if(!this.inputDir)
         return;
         
-        util.readDirectory(this.inputDir).then(listOfFiles=>{
-           if(listOfFiles)
-            var listLength = listOfFiles.length;
-            else
-            return;
-
+        util.readDirectory(this.inputDir).then(fsContents=>{
+           if(!fsContents)
+           return;
+           
+           var listLength = fsContents.length;
+                
            if(!listLength){
-             callback('Empty file/directiry list',null);
+             var result = this.parseDirectory();
+             return callback(null,result);
            }
 
-            listOfFiles.forEach(function(file) {
+            fsContents.forEach(function(file) {
                 file = path.resolve(this.inputDir, file);
                 
                 util.statAsync(file).then(stat=>{
-                    if(stat.isFile()){
-                         _this.fileNames.push(file);
-                            if (!--listLength){
-                               _this.getResult(callback);
-                            }
-                    }
-                    else{
-                         _this.directoryNames.push(file);
+                    if(stat && stat.isDirectory()){
                          _this.inputDir = file;
-                         _this.parseDirectoryAsync(function(err, res) {                            
+                         _this.parseDirectoryAsync(function(err, res) {   
+                            _this.directoryNames.push(file);                         
                             if (!--listLength){
-                                 _this.getResult(callback);
+                                 _this.parseDirectory(callback);
                             }
                         });
                     }
+                    else{              
+                        _this.fileNames.push(file);
+                        if (!--listLength){
+                            _this.parseDirectory(callback);
+                        }
+                    }
                  }).catch(statExp => {
-                     console.log('State Exception -> '+statExp);
-                    _this.getResult(callback);
+                     callback(statExp,null);
                 });
             }, this);           
 
        }).catch(readDirExp => {
            callback(readDirExp,null);
        });
-    }
-
-    getResult(callback){   
-        var result = this.parseDirectory();    
-        callback(null,result);
     }
 }
 
