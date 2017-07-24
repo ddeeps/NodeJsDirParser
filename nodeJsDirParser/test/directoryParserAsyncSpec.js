@@ -33,7 +33,7 @@ describe('parseDirectoryAsync()', function(){
 
      //Failing test case
      it('should return error when input directory is incorrect',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR);  
+        let directoryParserAsync = new DirectoryParserAsync(DIR);  
 
         directoryParserAsync.parseDirectoryAsync(function(error,result){
             expect(error).to.be.instanceof(Error);     
@@ -42,12 +42,12 @@ describe('parseDirectoryAsync()', function(){
 
      //Passing test cases
      it('should return parsed result of 3 files and 2 folders',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR1);  
+        let directoryParserAsync = new DirectoryParserAsync(DIR1);  
         let res1='BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d1.js';
         let res2='BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d2.js';
         let res3='BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d3.js';
-        var res4 = 'BAT'+sep+'SAT'+sep+'TOM';
-        var res5 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH';
+        let res4 = 'BAT'+sep+'SAT'+sep+'TOM';
+        let res5 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH';
 
         directoryParserAsync.parseDirectoryAsync(function(error,result){
             expect(result.fileNames).to.have.lengthOf(3);
@@ -62,11 +62,11 @@ describe('parseDirectoryAsync()', function(){
     });  
 
     it('should return parsed result of 3 files and 1 folder',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR2);
+        let directoryParserAsync = new DirectoryParserAsync(DIR2);
         let res1='BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d1.js';
         let res2='BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d2.js';
-        var res3 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d3.js';
-        var res4 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH';  
+        let res3 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH'+sep+'d3.js';
+        let res4 = 'BAT'+sep+'SAT'+sep+'TOM'+sep+'DEPTH';  
 
         directoryParserAsync.parseDirectoryAsync(function(error,result){
             expect(result.fileNames).to.have.lengthOf(3);
@@ -80,7 +80,7 @@ describe('parseDirectoryAsync()', function(){
     });
 
     it('should return parsed result of 2 files and empty folder',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR3); 
+        let directoryParserAsync = new DirectoryParserAsync(DIR3); 
         let res1='BAT'+sep+'CAT'+sep+'cat1.js';
         let res2='BAT'+sep+'CAT'+sep+'cat2.js';
 
@@ -94,12 +94,12 @@ describe('parseDirectoryAsync()', function(){
     });
 
     it('should return parsed result of 4 files and 1 folder',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR4); 
-        let res1='SKYPE'+sep+'CHAT'+sep+'TEXT'+'Alpha.txt';
-        let res2='SKYPE'+sep+'CHAT'+sep+'TEXT'+'Caps.txt';
-        let res3='SKYPE'+sep+'CHAT'+sep+'TEXT'+'lowCase.txt';
-        let res4='SKYPE'+sep+'CHAT'+sep+'TEXT'+'specChar.txt';
-        let res5='SKYPE'+sep+'CHAT'+sep+'EMOJIES'+'flowers';
+        let directoryParserAsync = new DirectoryParserAsync(DIR4); 
+        let res1='SKYPE'+sep+'CHAT'+sep+'TEXT'+sep+'Alpha.txt';
+        let res2='SKYPE'+sep+'CHAT'+sep+'TEXT'+sep+'Caps.txt';
+        let res3='SKYPE'+sep+'CHAT'+sep+'TEXT'+sep+'lowCase.txt';
+        let res4='SKYPE'+sep+'CHAT'+sep+'TEXT'+sep+'specChar.txt';
+        let res5='SKYPE'+sep+'CHAT'+sep+'TEXT'+sep+'Lang';
 
         directoryParserAsync.parseDirectoryAsync(function(error,result){
             expect(result.fileNames).to.have.lengthOf(4);
@@ -115,7 +115,7 @@ describe('parseDirectoryAsync()', function(){
     }); 
 
     it('should return parsed result of 2 files and empty folder',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR5);  
+        let directoryParserAsync = new DirectoryParserAsync(DIR5);  
         let res1='SKYPE'+sep+'VEDIO'+sep+'appear.jpg';
         let res2='SKYPE'+sep+'VEDIO'+sep+'shareScreen.js';
 
@@ -129,7 +129,7 @@ describe('parseDirectoryAsync()', function(){
     });    
 
      it('should return parsed result of 6 files and 1 folder',function(){
-        var directoryParserAsync = new DirectoryParserAsync(DIR6);  
+        let directoryParserAsync = new DirectoryParserAsync(DIR6);  
         let res1='SKYPE'+sep+'CHAT'+sep+'EMOJIES'+sep+'Scilent.jpg';
         let res2='SKYPE'+sep+'CHAT'+sep+'EMOJIES'+sep+'anger.jpg';
         let res3='SKYPE'+sep+'CHAT'+sep+'EMOJIES'+sep+'envy.jpg';

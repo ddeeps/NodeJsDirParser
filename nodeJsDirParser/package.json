@@ -1,7 +1,7 @@
 {
-  "name": "tdd",
+  "name": "nodejsdirparser",
   "version": "1.0.0",
-  "description": "A basic TDD approch.",
+  "description": "converts directory to json.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
